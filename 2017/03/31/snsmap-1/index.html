@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="snsmap," />
 
 
 
@@ -87,78 +87,58 @@
 
 
 
-<meta name="description" content="#Markdown常用语法及基本工具
+<meta name="description" content="#SNSMAP部分功能介绍_1
 
-下面是常用的，不够再补充
+SNS社区关注粉丝列表关系的爬取以及可视化表示
 
+#####以百度贴吧为例，主要的四个步骤为：
 
-＃号后跟一号标题 ， ＃＃后二号标题，一次类推，字号递减*&amp;gt;#1##2
-＊号后为无序列表， 1. 后为有序列表*&amp;gt;1.第一个
-‘&amp;gt;’后默认为斜体
-我是引用我是斜体
-
-
-超链接为［显示文本］(具体链接)
-markdown
+构造URL
+获取下一页URL
+判断是否存在下一页
+爬取当前页所有用户
 
 
-图片为  ![名字]（具体链接）
-
-
-
-＊＊包含为加粗，＊为斜体
-我是加粗的   我是加">
+###1.所要爬取的用户的初始url,以及x,其中,0是关注,1是粉丝,返回值是关注或粉丝的第一页url
+def GetFF(url,x):
+        response = urllib2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown">
-<meta property="og:url" content="http://yoursite.com/2017/03/30/markdown/index.html">
+<meta property="og:title" content="snsmap_1">
+<meta property="og:url" content="http://yoursite.com/2017/03/31/snsmap-1/index.html">
 <meta property="og:site_name" content="Huikang Liu">
-<meta property="og:description" content="#Markdown常用语法及基本工具
+<meta property="og:description" content="#SNSMAP部分功能介绍_1
 
-下面是常用的，不够再补充
+SNS社区关注粉丝列表关系的爬取以及可视化表示
 
+#####以百度贴吧为例，主要的四个步骤为：
 
-＃号后跟一号标题 ， ＃＃后二号标题，一次类推，字号递减*&amp;gt;#1##2
-＊号后为无序列表， 1. 后为有序列表*&amp;gt;1.第一个
-‘&amp;gt;’后默认为斜体
-我是引用我是斜体
-
-
-超链接为［显示文本］(具体链接)
-markdown
+构造URL
+获取下一页URL
+判断是否存在下一页
+爬取当前页所有用户
 
 
-图片为  ![名字]（具体链接）
-
-
-
-＊＊包含为加粗，＊为斜体
-我是加粗的   我是加">
-<meta property="og:image" content="http://mouapp.com/Mou_128.png">
-<meta property="og:updated_time" content="2017-03-31T02:01:13.000Z">
+###1.所要爬取的用户的初始url,以及x,其中,0是关注,1是粉丝,返回值是关注或粉丝的第一页url
+def GetFF(url,x):
+        response = urllib2">
+<meta property="og:updated_time" content="2017-03-31T09:02:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown">
-<meta name="twitter:description" content="#Markdown常用语法及基本工具
+<meta name="twitter:title" content="snsmap_1">
+<meta name="twitter:description" content="#SNSMAP部分功能介绍_1
 
-下面是常用的，不够再补充
+SNS社区关注粉丝列表关系的爬取以及可视化表示
 
+#####以百度贴吧为例，主要的四个步骤为：
 
-＃号后跟一号标题 ， ＃＃后二号标题，一次类推，字号递减*&amp;gt;#1##2
-＊号后为无序列表， 1. 后为有序列表*&amp;gt;1.第一个
-‘&amp;gt;’后默认为斜体
-我是引用我是斜体
-
-
-超链接为［显示文本］(具体链接)
-markdown
+构造URL
+获取下一页URL
+判断是否存在下一页
+爬取当前页所有用户
 
 
-图片为  ![名字]（具体链接）
-
-
-
-＊＊包含为加粗，＊为斜体
-我是加粗的   我是加">
-<meta name="twitter:image" content="http://mouapp.com/Mou_128.png">
+###1.所要爬取的用户的初始url,以及x,其中,0是关注,1是粉丝,返回值是关注或粉丝的第一页url
+def GetFF(url,x):
+        response = urllib2">
 
 
 
@@ -186,13 +166,13 @@ markdown
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/30/markdown/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/31/snsmap-1/"/>
 
 
 
 
 
-  <title> Markdown | Huikang Liu </title>
+  <title> snsmap_1 | Huikang Liu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="">
@@ -311,7 +291,7 @@ markdown
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/30/markdown/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/snsmap-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Huikang Liu">
@@ -332,7 +312,7 @@ markdown
             
             
               
-                Markdown
+                snsmap_1
               
             
           </h1>
@@ -347,8 +327,8 @@ markdown
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T17:44:09+08:00">
-                2017-03-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T16:27:55+08:00">
+                2017-03-31
               </time>
             
 
@@ -383,41 +363,74 @@ markdown
       
 
       
-        <p>#Markdown常用语法及基本工具</p>
+        <p>#SNSMAP部分功能介绍_1</p>
 <blockquote>
-<p>下面是常用的，不够再补充</p>
+<p><strong>SNS社区关注粉丝列表关系的爬取以及可视化表示</strong></p>
 </blockquote>
+<p>#####以百度贴吧为例，主要的四个步骤为：</p>
 <ul>
-<li>＃号后跟一号标题 ， ＃＃后二号标题，一次类推，字号递减*<br>&gt;<br>#1<br>##2</li>
-<li>＊号后为无序列表， 1. 后为有序列表*<br>&gt;<br>1.第一个</li>
-<li>‘&gt;’后默认为斜体<blockquote>
-<p>我是引用我是斜体</p>
-</blockquote>
-</li>
-<li>超链接为［显示文本］(具体链接)<blockquote>
-<p><a href="https://huikangliu.github.io" target="_blank" rel="external">markdown</a></p>
-</blockquote>
-</li>
-<li>图片为  ![名字]（具体链接）<blockquote>
-<p><img src="http://mouapp.com/Mou_128.png" alt="markdown"></p>
-</blockquote>
-</li>
-<li>＊＊包含为加粗，＊为斜体<blockquote>
-<p><strong>我是加粗的</strong>   <em>我是加斜的</em></p>
-</blockquote>
-</li>
-<li><p>列表长得比较麻烦，忘了看md文件里咋写的，第一个分割线不含：，中间的左右均含，最后一个末尾含<br>&gt;<br>|School    |Major                |My GPA |<br>|———-|:——————-:|——:|<br>|UCL       |Information Security |4.0    |</p>
-</li>
-<li><p>代码框是用｀括起来</p>
-<blockquote>
-<p><code>print &#39;hello world&#39;</code></p>
-</blockquote>
-</li>
-<li><p>分割线是使用三个＊号</p>
-</li>
+<li>构造URL</li>
+<li>获取下一页URL</li>
+<li>判断是否存在下一页</li>
+<li>爬取当前页所有用户</li>
 </ul>
 <hr>
-<p>好啦，第一篇博客就这么写完了，next蛮好看的，但是加载速度有点慢，可能还是要优化优化，就这样</p>
+<p>###1.所要爬取的用户的初始url,以及x,其中,0是关注,1是粉丝,返回值是关注或粉丝的第一页url</p>
+<pre>def GetFF(url,x):
+        response = urllib2.urlopen(url)
+        html = response.read()
+        soup = bs(html,'html.parser')
+        link_follow = soup.find_all("span",attrs={'class':'concern_num'})
+        soup = bs(str(link_follow),'html.parser')
+        link_raw = soup.find_all('a',attrs={'target':'_blank'})
+        link = []
+        for i in link_raw:
+            # print type(i)
+            link.append(i.get('href'))
+        url_qub = "http://tieba.baidu.com" + link[x]
+        return url_qub</pre>
+**[参数里的url可以由固定url前部加用户名构造，其中中文可以使用urllib.quote()进行传参]**
+
+###2.输入某url,返回下一页url
+<pre>def PageNum(url):
+    response = urllib2.urlopen(url)
+    html = response.read()
+    soup = bs(html,'html.parser')
+    rawmeat = soup.findAll('a',attrs={'class':'next'})
+    y = []
+    for x in rawmeat:
+        y.append(x.get('href'))
+    next_page = 'http://tieba.baidu.com' + y[0]
+    return next_page</pre>
+
+<p>###3.判断某url下一页是否存在</p>
+<pre>def CheckNum(url):
+        response = urllib2.urlopen(url)
+        html = response.read()
+        soup = bs(html, 'html.parser')
+        rawmeat = soup.findAll('a', attrs={'class': 'next'})
+        if len(rawmeat) == 0:
+            flag = 1
+        else:
+            flag = 0
+        return flag</pre>
+###4.获取当前页面内的所有用户名，并写入txt文件
+<pre>def GetName(url,filename):
+    f = open(r'cookie.txt', 'r')
+    tieba_cookie = {}
+    for line in f.read().split(';'):
+        name, value = line.strip().split('=', 1)
+        tieba_cookie[name] = value
+
+    tieba = requests.get(url=url, cookies=tieba_cookie).text
+    soup = bs(tieba, 'lxml')
+    raw_user = soup.find_all('span',attrs={'class':'name'})
+    file = open(filename,'a+')
+    for i in raw_user:
+        file.write(i.a.text + '\r\n')
+    file.close()</pre>
+
+<p> 啊，图形化之类的过会再写，准备吃晚饭去，20:00前搞定</p>
 
       
     </div>
@@ -445,6 +458,12 @@ markdown
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/snsmap/" rel="tag"># snsmap</a>
+          
+        </div>
+      
 
       
         
@@ -454,15 +473,15 @@ markdown
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/03/30/markdown/" rel="next" title="Markdown">
+                <i class="fa fa-chevron-left"></i> Markdown
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/31/snsmap-1/" rel="prev" title="snsmap_1">
-                snsmap_1 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

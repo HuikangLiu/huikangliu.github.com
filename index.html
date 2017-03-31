@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -250,7 +250,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/snsmap/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/31/snsmap-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Huikang Liu">
@@ -272,8 +272,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/31/snsmap/" itemprop="url">
-                  snsmap
+                <a class="post-title-link" href="/2017/03/31/snsmap-1/" itemprop="url">
+                  snsmap_1
                 </a>
               
             
@@ -287,9 +287,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T10:11:46+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T16:27:55+08:00">
                 2017-03-31
               </time>
             
@@ -327,7 +327,75 @@
       
         
           
-            
+            <p>#SNSMAP部分功能介绍_1</p>
+<blockquote>
+<p><strong>SNS社区关注粉丝列表关系的爬取以及可视化表示</strong></p>
+</blockquote>
+<p>#####以百度贴吧为例，主要的四个步骤为：</p>
+<ul>
+<li>构造URL</li>
+<li>获取下一页URL</li>
+<li>判断是否存在下一页</li>
+<li>爬取当前页所有用户</li>
+</ul>
+<hr>
+<p>###1.所要爬取的用户的初始url,以及x,其中,0是关注,1是粉丝,返回值是关注或粉丝的第一页url</p>
+<pre>def GetFF(url,x):
+        response = urllib2.urlopen(url)
+        html = response.read()
+        soup = bs(html,'html.parser')
+        link_follow = soup.find_all("span",attrs={'class':'concern_num'})
+        soup = bs(str(link_follow),'html.parser')
+        link_raw = soup.find_all('a',attrs={'target':'_blank'})
+        link = []
+        for i in link_raw:
+            # print type(i)
+            link.append(i.get('href'))
+        url_qub = "http://tieba.baidu.com" + link[x]
+        return url_qub</pre>
+**[参数里的url可以由固定url前部加用户名构造，其中中文可以使用urllib.quote()进行传参]**
+
+###2.输入某url,返回下一页url
+<pre>def PageNum(url):
+    response = urllib2.urlopen(url)
+    html = response.read()
+    soup = bs(html,'html.parser')
+    rawmeat = soup.findAll('a',attrs={'class':'next'})
+    y = []
+    for x in rawmeat:
+        y.append(x.get('href'))
+    next_page = 'http://tieba.baidu.com' + y[0]
+    return next_page</pre>
+
+<p>###3.判断某url下一页是否存在</p>
+<pre>def CheckNum(url):
+        response = urllib2.urlopen(url)
+        html = response.read()
+        soup = bs(html, 'html.parser')
+        rawmeat = soup.findAll('a', attrs={'class': 'next'})
+        if len(rawmeat) == 0:
+            flag = 1
+        else:
+            flag = 0
+        return flag</pre>
+###4.获取当前页面内的所有用户名，并写入txt文件
+<pre>def GetName(url,filename):
+    f = open(r'cookie.txt', 'r')
+    tieba_cookie = {}
+    for line in f.read().split(';'):
+        name, value = line.strip().split('=', 1)
+        tieba_cookie[name] = value
+
+    tieba = requests.get(url=url, cookies=tieba_cookie).text
+    soup = bs(tieba, 'lxml')
+    raw_user = soup.find_all('span',attrs={'class':'name'})
+    file = open(filename,'a+')
+    for i in raw_user:
+        file.write(i.a.text + '\r\n')
+    file.close()</pre>
+
+<p> 啊，图形化之类的过会再写，准备吃晚饭去，20:00前搞定</p>
+
           
         
       
@@ -407,7 +475,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T17:44:09+08:00">
                 2017-03-30
@@ -562,7 +630,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">2</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -575,7 +643,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -625,7 +693,7 @@
 
 
 <div class="powered-by">
-  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
