@@ -327,7 +327,36 @@
       
         
           
-            
+            <p>###某小白拿到了管理员密码,一高兴，删的只剩前十位，社工得知管理员常用密码格式</p>
+<blockquote>
+<p>按格式做字典，md5爆破。思路简单，但是实现起来还是有坑的。另外多吐槽一句社工这么强都拿到密码格式了，不能直接用已知密码做字典爆破么</p>
+</blockquote>
+<ul>
+<li>已知前十位：15583d86eb</li>
+<li>密码格式 key{数字|字母 *4}</li>
+</ul>
+<p>1 .字典生成</p>
+<blockquote>
+<pre><code>import itertools
+word = &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890&quot;
+r = itertools.product(word,repeat=4)
+</code></pre><p><em>注意<code>for i in r</code>的话是tuple，格式还要改，否则md5不一样</em></p>
+</blockquote>
+<hr>
+<p>2 .md5加密</p>
+<blockquote>
+<pre><code>import hashlib
+def md5Encode(str):
+    m = hashlib.md5()
+    m.update(str)
+    return m.hexdigest()
+</code></pre></blockquote>
+<hr>
+<p>3 .边边角角做一做就愉快的去Command F吧</p>
+<p>4 .结果<br><img src="http://onmuddyfe.bkt.clouddn.com/WechatIMG39.jpeg" alt="我果然是个ctf咸鱼，居然做了半个小时"></p>
+<p>5 .所以，密码就是key{zJxP}</p>
+<p>6 .最后，favicon好了，好看</p>
+
           
         
       
