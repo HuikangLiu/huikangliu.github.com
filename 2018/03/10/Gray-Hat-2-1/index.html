@@ -109,7 +109,7 @@ C程序的入口是main()，返回值类型和参数均可选，如果是使用�
 函数第一行称为函数签名，观察这个签名可以得知该函数执行后是否有返回值以及在函数内使用的形参
 
 变量的主要类型有int,float,doub">
-<meta property="og:updated_time" content="2018-03-10T08:02:08.000Z">
+<meta property="og:updated_time" content="2018-03-10T08:07:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Gray Hat 2-1">
 <meta name="twitter:description" content="迟到了大概一万年的第二篇。
@@ -407,18 +407,7 @@ C程序的入口是main()，返回值类型和参数均可选，如果是使用�
 <p>＊ 指针，在内存中移动数据是缓慢的，所以需要指针。内存地址的长度是32位，所以指针的大小被设定为4字节。同时要注意，如果<code>char *str</code>，该指针会被存放进.bss节，因为命令里没有设定字符串的大小</p>
 <hr>
 <p>####下面是一个关于内存知识的示例程序</p>
-<p><code>//memory.c
-int index = 5;
-char *str;
-int nothing;
-void funct1(int c){
-    int i = c;
-    str = (char*)malloc(10*sizeof(char));
-    strncpy(str,&quot;abcde&quot;,5);
-}
-void main(){
-    funct1(1);
-}</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//memory.c</div><div class="line">int index = 5;</div><div class="line">char *str;</div><div class="line">int nothing;</div><div class="line">void funct1(int c)&#123;</div><div class="line">	int i = c;</div><div class="line">	str = (char*)malloc(10*sizeof(char));</div><div class="line">	strncpy(str,&quot;abcde&quot;,5);</div><div class="line">&#125;</div><div class="line">void main()&#123;</div><div class="line">	funct1(1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
 
       
