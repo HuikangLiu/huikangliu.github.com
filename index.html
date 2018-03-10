@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            Startseite
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            Archiv
           </a>
         </li>
       
@@ -250,7 +250,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/22/Grey-Hat-1-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/10/Gray-Hat-2-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Huikang Liu">
@@ -272,7 +272,202 @@
             
               
                 
-                <a class="post-title-link" href="/2017/10/22/Grey-Hat-1-1/" itemprop="url">
+                <a class="post-title-link" href="/2018/03/10/Gray-Hat-2-1/" itemprop="url">
+                  Gray Hat 2-1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-10T15:09:21+08:00">
+                2018-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>迟到了大概一万年的第二篇。</p>
+</blockquote>
+<p>#编程技能</p>
+<ul>
+<li><p>C程序的入口是main()，返回值类型和参数均可选，如果是使用命令行参数，可以使用这个格式<br><code>&lt;optional return value type&gt;main(int argc,char *argv[])</code></p>
+</li>
+<li><p>函数第一行称为函数签名，观察这个签名可以得知该函数执行后是否有返回值以及在函数内使用的形参</p>
+</li>
+<li><p>变量的主要类型有int,float,double,char，其典型大小分别分4/2，4，8，1字节</p>
+</li>
+<li><p>程序编译后，大多数变量都会被预分配固定大小内存。实际大小可能会受硬件影响，而 <em>sizeof()</em>所获取的只是由编译器分配的</p>
+</li>
+<li><p>最常见的赋值语句是<code>destination = source&lt;with optional operators&gt;</code></p>
+</li>
+<li><p>printf最多的使用是直接打印与借助格式化字符串打印。分别为<code>printf(&lt;string&gt;)</code>与<code>printf(&lt;format string&gt;,&lt;list of variables/values&gt;)</code>.其中，\n为换行，%d为十进制数，%s为字符串值，%x为十六进制数</p>
+</li>
+</ul>
+<p><strong>需要注意的是如果变量／值的个数与格式化符号字符串中的符号数不一致，会出现问题，将在Gray Hat 11种讨论</strong></p>
+<ul>
+<li><p>scanf的作用是获取用户输入，&amp;表示把值存入后面变量所代指的内存地址处</p>
+</li>
+<li><p>strcpy&amp;strncpy,strcpy的问题在于没有做<strong>边界检查</strong>，导致可能出现缓冲区溢出。前者甚至可以被称之为C语言中最危险的命令</p>
+</li>
+<li><p><strong>此外，做边界检查的时候，要保证宽度的正确</strong></p>
+</li>
+<li><p>注释使用//  &amp; /**/</p>
+</li>
+<li><p>gcc的使用，如要编译test.c<br>  <code>gcc -o test.c</code> -&gt; <code>./test</code></p>
+</li>
+<li><p>RAM的数据在计算机活跃的时候随时可以获取到，这也是RAM的名称由来，但是<strong>在计算机关闭时，RAM内的数据会全部丢失</strong></p>
+</li>
+<li><p>现代处理器基于intel技术的产品(x86),内存按32位寻址，也就是说处理器用于选取特定内存地址的地址总线是32位宽，最大可寻址4 294 967 295字节</p>
+</li>
+<li><p>字节序意味着存储数据时应该由低位字节还是高位字节存入，intel占边低位，摩托罗拉相反</p>
+</li>
+</ul>
+<p>＊ 内存中的程序：加载入内存后，进程会分成很多小节，以下六种为主要的节</p>
+<pre><code>1. .text节 基本与二进制可执行文件的.text部分保持一致，主要包含完成任务需要执行的机器指令。是只读的！如果尝试写入信息会导致段错误，其大小在运行时是固定的，当进程初次载入内存时就已经确定了。
+
+2. .data节 用于存储已初始化的全局变量，同样也是固定大小的 int a = 1;
+
+3. .bss节 below stack section栈下节，用于存储未初始化的全局变量，如int a;
+
+4. 堆节 用于存储动态分配的变量，并且分配的存储空间使用的是低位字节序。内存分配通过malloc()和free()控制。
+
+ int i = malloc(sizeof(int)):
+
+5. 栈节  用于(递归地？)记录函数调用，在大多数系统中是高地址内存存到低地址内存的生长方式，本地变量也在此节中。而这种生长方式也导致了缓冲区溢出的存在
+
+6. 环境／参数节 存储可能用到的系统级变量的副本，如可访问路径，shell名，主机名等
+</code></pre><ul>
+<li><p>缓冲区是可以接受和存放数据的存储区域，数据会保留到有进程对他进行处理为止</p>
+</li>
+<li><p>每个进程都有自己的一组缓冲区,所以关键是让他们保持连续 ，在进程内存的.data&amp;.bss中分配内存就可以实现这一点。缓冲区一旦分配，大小也就固定了</p>
+</li>
+<li><p>字符串实际就是内存中连续的字符数组</p>
+</li>
+</ul>
+<p>＊ 指针，在内存中移动数据是缓慢的，所以需要指针。内存地址的长度是32位，所以指针的大小被设定为4字节。同时要注意，如果<code>char *str</code>，该指针会被存放进.bss节，因为命令里没有设定字符串的大小</p>
+<hr>
+<p>####下面是一个关于内存知识的示例程序</p>
+<p><code>//memory.c
+int index = 5;
+char *str;
+int nothing;
+void funct1(int c){
+    int i = c;
+    str = (char*)malloc(10*sizeof(char));
+    strncpy(str,&quot;abcde&quot;,5);
+}
+void main(){
+    funct1(1);
+}</code></p>
+<hr>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/Grey-Hat-1-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Huikang Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://onmuddyfe.bkt.clouddn.com/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huikang Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/03/06/Grey-Hat-1-1/" itemprop="url">
                   Grey Hat 1-1
                 </a>
               
@@ -287,10 +482,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-22T12:19:04+08:00">
-                2017-10-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-06T12:19:04+08:00">
+                2018-03-06
               </time>
             
 
@@ -445,7 +640,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-22T09:58:43+08:00">
                 2017-04-22
@@ -601,7 +796,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-18T11:32:31+08:00">
                 2017-04-18
@@ -728,7 +923,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-04T14:59:16+08:00">
                 2017-04-04
@@ -877,7 +1072,7 @@ def md5Encode(str):
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-31T16:27:55+08:00">
                 2017-03-31
@@ -1067,7 +1262,7 @@ def md5Encode(str):
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-03-30T17:44:09+08:00">
                 2017-03-30
@@ -1221,8 +1416,8 @@ def md5Encode(str):
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
           
@@ -1235,7 +1430,7 @@ def md5Encode(str):
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">tags</span>
+                <span class="site-state-item-name">Tags</span>
               
             </div>
           
@@ -1276,7 +1471,7 @@ def md5Encode(str):
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1285,7 +1480,7 @@ def md5Encode(str):
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
