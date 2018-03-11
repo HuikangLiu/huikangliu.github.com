@@ -250,6 +250,239 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/11/Gray-Hat-2-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Huikang Liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://onmuddyfe.bkt.clouddn.com/avator.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Huikang Liu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/03/11/Gray-Hat-2-2/" itemprop="url">
+                  Gray Hat 2-2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-11T18:34:19+08:00">
+                2018-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Intel处理器与汇编基础，说真的，这一段我真的很想跳过去，但心里一直想学逆向，真是很纠结很痛苦。</p>
+</blockquote>
+<p>#Intel处理器及汇编基础中的基础</p>
+<ul>
+<li><p>目前大部分处理器都是Intel 80*86系列的</p>
+</li>
+<li><p>寄存器<em>用于储存临时数据</em>，可以看作是<strong>处理器内部使用的快速8位或32位内存块</strong></p>
+</li>
+<li><p>通用寄存器</p>
+<ol>
+<li>EAX,EBX,ECX,EDX     操作数据</li>
+<li>AX,BX,CX,DX            上述寄存器的16位版本</li>
+<li>AH,BH,CH,DH,AL,BL,CL,DL 上述寄存器的8位高位和低位字节</li>
+</ol>
+</li>
+<li><p>段寄存器<br>  CS,SS,DS,ES,FS,GS 16位寄存器，存放内存地址的前半部分；存放指向代码，栈和额外数据段的指针</p>
+</li>
+<li><p>偏移寄存器 指示相对于段寄存器中存放的地址的偏移</p>
+<ol>
+<li>EBP(基址指针寄存器)  指向函数的本地环境的起始位置</li>
+<li>ESI(源变址寄存器)    存放着使用内存块的操作中的源数据的偏移</li>
+<li>EDI(目的变址寄存器)   存放着使用内存块的操作中目的数据的偏移</li>
+<li>ESP(栈指针寄存器)        指向栈顶的指针</li>
+</ol>
+</li>
+<li><p>指针寄存器 仅有CPU使用</p>
+<ol>
+<li>EFLAGS标志寄存器。要了解的关键标记有ZF=zero flag, IF = Interrupt enable flag, SF = sign flag  CPU用来跟踪逻辑结果和处理器的状态</li>
+<li>EIP（指令指针寄存器）  指向要执行的下一条指令的地址</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>这条我要加粗摘录下来<strong>虽然有许多整本的书籍详细地介绍了如何使用ASM语言，但本节所给出的一些基础知识可以让你更容易地掌握它，从而成为一个更高效的正义黑客。</strong></p>
+</li>
+<li><p>汇编主要有AT&amp;T和Intel。AT&amp;T语法主要由GNU汇编器（gas，包含在gcc编译器套件中）使用。NASM格式被许多windows汇编器和调试器采用。<em>这两种语言的机器语言是完全一样的，但在风格和格式方面还是有一定差异的</em></p>
+<ol>
+<li>源和目的操作数的位置颠倒，而且使用不同的符号来标记注释的起始位置：<br>NASM格式：CMD<dest>,<source>&lt;;comment&gt;<br>AT&amp;T格式：CMD<source>,<dest>&lt;#comment&gt;</dest></dest></li>
+<li>AT&amp;T格式在寄存器前面使用％符号，而NASM不需要</li>
+<li>AT&amp;T格式在字面值使用$符号，而NASM不需要</li>
+<li>AT&amp;T处理内存引用的方式NASM不同<br><optional label:=""><mnemonic><operands><optional comments=""></optional></operands></mnemonic></optional></li>
+</ol>
+</li>
+<li><p>常见指令</p>
+<ol>
+<li><p>mov    <figure class="highlight plain"><figcaption><span>eax,1234h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mov cs,ax</div></pre></td></tr></table></figure></p>
+</li>
+<li><p>add &amp; sub  <figure class="highlight plain"><figcaption><span>eax,51h</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sub eax 51h</div></pre></td></tr></table></figure></p>
+</li>
+<li><p>push &amp; pop    <figure class="highlight plain"><figcaption><span>eax</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pop eax</div></pre></td></tr></table></figure></p>
+</li>
+<li><p>xor            <code>xor eax,eax</code></p>
+</li>
+<li>jne,je,jz,jnz,jmp   这会根据标志积存器中的零标志位生成程序分支，如果零标志位等于0，jne/jnz就会跳转。如果零标志位等于1，je/jz就会跳转。而jmp总是会跳转。</li>
+<li>call &amp; ret    call用于调用过程（而不是跳转到标签），ret命令用在过程末尾处，用于将控制流程返回到call之后的那条命令<code>call subroutine 1</code><br><code>ret</code></li>
+<li>inc &amp; dec    用于将目的操作数递增或递减      <code>inc eax</code> <code>dec eax</code></li>
+<li>lea    lea命令用于将源操作数的有效地址加载到目的操作数中 <code>lea eax,[dsi+4]</code></li>
+<li>int    用于向处理器抛出一个系统中断信号。常用的中断信号是0x80，它用于向内核发送一个系统调用 <code>int 0x80</code></li>
+</ol>
+</li>
+<li><p>寻址模式</p>
+<ol>
+<li>寄存器寻址        <code>mov ebx,edx</code> <code>add al,ch</code></li>
+<li>立即数寻址        <code>mov eax,1234h</code> <code>mov dx,301</code></li>
+<li>直接寻址        <code>mov bh,100</code> <code>mov[4321h],bh</code></li>
+<li>寄存器间接寻址         <code>mov[di],ecx</code></li>
+<li>寄存器相对寻址        <code>mov edx,20[edx]</code></li>
+<li>基址加变址寻址        <code>mov ecx,20[esi]</code></li>
+<li>相对基址加变址寻址        <code>mov ax,[bx][si]+1</code></li>
+</ol>
+</li>
+</ul>
+<ul>
+<li>汇编文件结构<ol>
+<li>.model .model指令用于指示.data和.text节的大小</li>
+<li>.stack .stack指令标志栈节的起始位置，并用于指示栈的大小（以字节为单位）</li>
+<li>.data .data指令标记数据节的起始位置，并用于定义变量（包括已经初始化的和未初始化的）</li>
+<li>.text .text指令包括用于存放程序的命令</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>汇编过程<br>  1.生成目标代码</p>
+<pre><code>`$ nasm -f elf hello.asm`
+</code></pre><p>  2.调用链接器生成可执行程序</p>
+<pre><code>`ld -s -o hello hello.o`
+</code></pre><p>  3.运行可执行程序</p>
+<pre><code><figure class="highlight plain"><figcaption><span>./hello</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hello,haxor!</div></pre></td></tr></table></figure>
+</code></pre></li>
+<li><p>首选调试器为gdb，提供了强大的命令行接口，可以在运行程序的时候保持全面的监控</p>
+</li>
+<li><p>gdb命令</p>
+<ol>
+<li>b<function>    在function处设置一个断点</function></li>
+<li>b *mem    在指定的绝对内存位置设置一个断电</li>
+<li>info b    输出有关断点的信息</li>
+<li>delete b        移除一个断点</li>
+<li>run <args>    在gdb内使用给定的参数启动要调试的程序</args></li>
+<li>info reg        输出有关当前寄存器状态的信息</li>
+<li>stepi or si        执行一条机器指令</li>
+<li>next or n        执行一个函数</li>
+<li>bt        回溯命令，输出栈帧的名称</li>
+<li>up/down        在栈帧中向上或向下移动</li>
+<li>print var        打印变量的值<br>print /x $<reg>        打印寄存器的值</reg></li>
+<li>x/NT A        检查内存，其中N表示要显示的单位数，T表示要显示的数据类型（x:十六进制，d:十进制，c:字符,s:字符串，i：指令），A表示绝对地址或像“main”这样的符号名称<br>13.quit        退出gdb</li>
+</ol>
+</li>
+<li><p>使用gdb进行反汇编<br>  要使用gdb生成反汇编代码，需要输入下面的两条命令：<br>  <code>set disassembly-flavor&lt;intel/att&gt;</code><br>  <code>disassemble&lt;function name&gt;</code><br>  第一条命令用于在Intel(NASM)和AT&amp;T两种格式之间来回切换。默认情况下，gdb使用AT&amp;T格式。第二条指令用于反汇编给定的函数（包括main函数）。例如，要采用两种格式来反汇编函数greeting，则输入如下指令：<br>  <code>$ gdb -q meet</code></p>
+</li>
+</ul>
+<hr>
+<p>今天搞定啦～出去跟脆弱玻璃心少女徒弟聊天去</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/10/Gray-Hat-2-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1405,7 +1638,7 @@ def md5Encode(str):
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
